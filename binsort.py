@@ -54,6 +54,7 @@ for activity in activities:
         binNumber = 1
 
         if bin[2] == 0 and bin[3] == 0:
+            #placeholder - needs updating to handle non-standard bins
                 datarow = { "Warehouse Number":bin[4],	
                             "Storage Bin":bin[0][0:7] + str(binNumber),
                             "Activity":"",
