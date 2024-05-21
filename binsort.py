@@ -1,6 +1,6 @@
 from pandas import DataFrame, read_excel
-from laSort import LaneSorting, AisleSorting
-#from visualizer import visualize
+from _laSort import LaneSorting, AisleSorting
+#from _visualizer import visualize
 
 columnumber = 0
 rownumber = 0
