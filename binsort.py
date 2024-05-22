@@ -1,6 +1,6 @@
 from pandas import DataFrame, read_excel
 from _laSort import LaneSorting, AisleSorting
-#from _visualizer import visualize
+from _visualizer import visualize
 
 columnumber = 0
 rownumber = 0
@@ -33,7 +33,7 @@ sortedlist = [x for x in sortedlist if "nan" not in x]
 
 
 #Only somewhat works
-#visualize(sortedlist,table)
+visualize(sortedlist,table)
 
 # Write bins in order - debug
 #file = open('sortedbins.csv','w')
@@ -49,20 +49,20 @@ SortSequence = 1
 activities = ["PICK","CLSP","INTL","INV","NOLM","PTWY","REPL","STCH"]
 dictionary = {}
 
+print(sortedlist)
+
 for activity in activities:
     for bin in sortedlist:
         binNumber = 1
-
-        if bin[2] == 0 and bin[3] == 0:
-            #placeholder - needs updating to handle non-standard bins
+        if bin[2] == '0' and bin[3] == '0':
                 datarow = { "Warehouse Number":bin[4],	
-                            "Storage Bin":bin[0][0:7] + str(binNumber),
+                            "Storage Bin":bin[0],
                             "Activity":"",
                             "Sequence Number":SortSequence,
                             "Activity Area":activity,	
-                            "Storage Type":bin[0:3],	
+                            "Storage Type":bin[0][0:4],	
                             "Storage Section":"",	
-                            "Storage Bin Aisle":"",	
+                            "Storage Bin Aisle":str.split(bin[0],"-")[0],	
                             "Sort Sequence":SortSequence,	
                             "Distance to Start of Aisle":"",	
                             "Aisle Length":"",	
