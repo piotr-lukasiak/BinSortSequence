@@ -45,21 +45,22 @@ columns = ["Warehouse Number",	"Storage Bin",	"Activity",	"Sequence Number",	"Ac
            "Storage Type",	"Storage Section",	"Storage Bin Aisle",	"Sort Sequence",	"Distance to Start of Aisle",	
            "Aisle Length",	"Subsequent Aisle",	"Dist. to Subs. Aisle",	"Consolidation Group",	"Message Row"]
 
-SortSequence = 1
+row = 1
 activities = ["PICK","CLSP","INTL","INV","NOLM","PTWY","REPL","STCH"]
-dictionary = {}
 
 print(sortedlist)
 
 for activity in activities:
+    dictionary = {}
+    SortSequence = 1
     for bin in sortedlist:
         binNumber = 1
         if bin[2] == '0' and bin[3] == '0':
                 datarow = { "Warehouse Number":bin[4],	
                             "Storage Bin":bin[0],
-                            "Activity":"",
+                            "Activity":activity,
                             "Sequence Number":SortSequence,
-                            "Activity Area":activity,	
+                            "Activity Area":bin[0][0:4],
                             "Storage Type":bin[0][0:4],	
                             "Storage Section":"",	
                             "Storage Bin Aisle":str.split(bin[0],"-")[0],	
@@ -71,16 +72,17 @@ for activity in activities:
                             "Consolidation Group":"",	
                             "Message Row":""
                             }
-                dictionary[SortSequence] = datarow
+                dictionary[row] = datarow
+                row += 1
                 SortSequence += 1
                 binNumber +=1
         else:
             for pcks in range(1,int(bin[2])+1):
                 datarow = { "Warehouse Number":bin[4],	
                             "Storage Bin":bin[0][0:7] + str(binNumber),
-                            "Activity":"",
+                            "Activity":activity,
                             "Sequence Number":SortSequence,
-                            "Activity Area":activity,	
+                            "Activity Area":"0101",	
                             "Storage Type":"0101",	
                             "Storage Section":"",	
                             "Storage Bin Aisle":bin[0][0:2],	
@@ -92,16 +94,17 @@ for activity in activities:
                             "Consolidation Group":"",	
                             "Message Row":""
                             }
-                dictionary[SortSequence] = datarow
+                dictionary[row] = datarow
+                row += 1
                 SortSequence += 1
                 binNumber +=1
 
             for reserve in range(1,int(bin[3])+1):
                 datarow = { "Warehouse Number":bin[4],	
                             "Storage Bin":bin[0][0:7] + str(binNumber),
-                            "Activity":"",
+                            "Activity":activity,
                             "Sequence Number":SortSequence,
-                            "Activity Area":activity,	
+                            "Activity Area":"0102",	
                             "Storage Type":"0102",	
                             "Storage Section":"",	
                             "Storage Bin Aisle":bin[0][0:2],	
@@ -113,9 +116,11 @@ for activity in activities:
                             "Consolidation Group":"",	
                             "Message Row":""
                             }
-                dictionary[SortSequence] = datarow
+                dictionary[row] = datarow
+                row += 1
                 SortSequence += 1
                 binNumber +=1
             
-sortedDF = DataFrame.from_dict(dictionary, orient='index')
-sortedDF.to_csv("sort_sequence_upload.csv", index=False)
+    sortedDF = DataFrame.from_dict(dictionary, orient='index')
+    sortedDF.to_csv(activity+".csv", index=False)
+

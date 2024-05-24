@@ -3,5 +3,12 @@
 /dist
 /binsort.spec
 layout.png
-/sort_sequence_upload.csv
-/layout.png
+sort_sequence_upload.csv
+CLSP.csv
+INTL.csv
+INV.csv
+NOLM.csv
+PICK.csv
+PTWY.csv
+REPL.csv
+STCH.csv
