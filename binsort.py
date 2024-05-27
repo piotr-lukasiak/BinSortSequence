@@ -46,7 +46,7 @@ columns = ["Warehouse Number",	"Storage Bin",	"Activity",	"Sequence Number",	"Ac
            "Aisle Length",	"Subsequent Aisle",	"Dist. to Subs. Aisle",	"Consolidation Group",	"Message Row"]
 
 row = 1
-activities = ["PICK","CLSP","INTL","INV","NOLM","PTWY","REPL","STCH"]
+activities = ["PICK","CLSP","INTL","INVE","NOLM","PTWY","REPL","STCH"]
 
 print(sortedlist)
 
