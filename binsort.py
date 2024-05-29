@@ -13,9 +13,7 @@ table = table.transpose()
 
 tbl = table.values.tolist()
 
-
-
-while sortlist.__len__() > 0:
+while len(sortlist) > 0:
     SortStyle = sortlist[0]
     if 'Lane' in sortlist[0]:
         sortedlist.extend(LaneSorting(SortStyle, tbl[columnumber].copy()))
@@ -32,14 +30,8 @@ while sortlist.__len__() > 0:
 sortedlist = [x for x in sortedlist if "nan" not in x]
 
 
-#Only somewhat works
+#Only somewhat works. Doesn't work at all for UPick
 visualize(sortedlist,table)
-
-# Write bins in order - debug
-#file = open('sortedbins.csv','w')
-#for line in sortedlist:
-#    file.writelines(line)
-#    file.write("\n")
 
 columns = ["Warehouse Number",	"Storage Bin",	"Activity",	"Sequence Number",	"Activity Area",	
            "Storage Type",	"Storage Section",	"Storage Bin Aisle",	"Sort Sequence",	"Distance to Start of Aisle",	
@@ -47,8 +39,6 @@ columns = ["Warehouse Number",	"Storage Bin",	"Activity",	"Sequence Number",	"Ac
 
 row = 1
 activities = ["PICK","CLSP","INTL","INVE","NOLM","PTWY","REPL","STCH"]
-
-print(sortedlist)
 
 for activity in activities:
     dictionary = {}
