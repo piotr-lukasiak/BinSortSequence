@@ -31,7 +31,7 @@ sortedlist = [x for x in sortedlist if "nan" not in x]
 
 
 #Only somewhat works. Doesn't work at all for UPick
-visualize(sortedlist,table)
+#visualize(sortedlist,table)
 
 columns = ["Warehouse Number",	"Storage Bin",	"Activity",	"Sequence Number",	"Activity Area",	
            "Storage Type",	"Storage Section",	"Storage Bin Aisle",	"Sort Sequence",	"Distance to Start of Aisle",	
