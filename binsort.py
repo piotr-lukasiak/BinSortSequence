@@ -1,6 +1,5 @@
 from pandas import DataFrame, read_excel
 from _laSort import LaneSorting, AisleSorting
-from _visualizer import visualize
 
 columnumber = 0
 rownumber = 0
@@ -28,10 +27,6 @@ while len(sortlist) > 0:
         continue
 
 sortedlist = [x for x in sortedlist if "nan" not in x]
-
-
-#Only somewhat works. Doesn't work at all for UPick
-#visualize(sortedlist,table)
 
 columns = ["Warehouse Number",	"Storage Bin",	"Activity",	"Sequence Number",	"Activity Area",	
            "Storage Type",	"Storage Section",	"Storage Bin Aisle",	"Sort Sequence",	"Distance to Start of Aisle",	
